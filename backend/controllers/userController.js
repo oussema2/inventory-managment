@@ -104,7 +104,7 @@ const loginUser = asyncHandler(async (req, res) => {
     });
   }
   if (user && passwordIsCorrect) {
-    const { _id, name, email, photo, phone, bio } = user;
+    const { _id, name, email, photo, phone, bio, role } = user;
     res.status(200).json({
       _id,
       name,
@@ -113,6 +113,7 @@ const loginUser = asyncHandler(async (req, res) => {
       phone,
       bio,
       token,
+      role,
     });
   } else {
     res.status(400);
@@ -312,6 +313,12 @@ const resetPassword = asyncHandler(async (req, res) => {
   });
 });
 
+const getUsers = async (req, res) => {
+  const users = await User.find();
+  console.log(users);
+  res.status(200).json({ message: "ok", data: users });
+};
+
 module.exports = {
   registerUser,
   loginUser,
@@ -322,4 +329,5 @@ module.exports = {
   changePassword,
   forgotPassword,
   resetPassword,
+  getUsers,
 };

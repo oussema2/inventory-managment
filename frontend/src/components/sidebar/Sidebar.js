@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import "./Sidebar.scss";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { RiProductHuntLine } from "react-icons/ri";
-import menu from "../../data/sidebar";
+import { admin_menu, superAdmin_menu } from "../../data/sidebar";
 import SidebarItem from "./SidebarItem";
 import { useNavigate } from "react-router-dom";
+import { selectRole, selectUser } from "../../redux/features/auth/authSlice";
+import { useSelector } from "react-redux";
 
 const Sidebar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
   const navigate = useNavigate();
+  const role = useSelector(selectRole);
 
   const goHome = () => {
     navigate("/");
@@ -34,9 +37,13 @@ const Sidebar = ({ children }) => {
             <HiMenuAlt3 onClick={toggle} />
           </div>
         </div>
-        {menu.map((item, index) => {
-          return <SidebarItem key={index} item={item} isOpen={isOpen} />;
-        })}
+        {role === "Super-Admin"
+          ? superAdmin_menu.map((item, index) => {
+              return <SidebarItem key={index} item={item} isOpen={isOpen} />;
+            })
+          : admin_menu.map((item, index) => {
+              return <SidebarItem key={index} item={item} isOpen={isOpen} />;
+            })}
       </div>
 
       <main
