@@ -32,7 +32,7 @@ export const superAdmin_menu = [
     ],
   },
   {
-    title: "Report Bug",
+    title: "Contact us",
     icon: <FaCommentAlt />,
     path: "/contact-us",
   },
@@ -64,7 +64,7 @@ export const admin_menu = [
     ],
   },
   {
-    title: "Report Bug",
+    title: "Contact Us",
     icon: <FaCommentAlt />,
     path: "/contact-us",
   },

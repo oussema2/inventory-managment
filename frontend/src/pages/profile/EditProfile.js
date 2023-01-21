@@ -44,6 +44,12 @@ const EditProfile = () => {
   const saveProfile = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    if(!profile.name ){
+      toast.error("Enter Name ...");
+      setIsLoading(false)
+      return
+    }
+   
     try {
       // Handle Image upload
       let imageURL;

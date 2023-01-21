@@ -59,7 +59,7 @@ const AddProduct = () => {
 
     await dispatch(createProduct(formData));
 
-    //navigate("/dashboard");
+    navigate("/dashboard");
   };
 
   return (

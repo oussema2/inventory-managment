@@ -11,6 +11,7 @@ const Header = () => {
 
   const logout = async () => {
     await logoutUser();
+    localStorage.clear()
     await dispatch(SET_LOGIN(false));
     navigate("/login");
   };

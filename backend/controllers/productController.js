@@ -103,22 +103,23 @@ const updateProduct = asyncHandler(async (req, res) => {
   let fileData = {};
   if (req.file) {
     // Save image to cloudinary
+    console.log("runninf" , req.body)
     let uploadedFile;
-    try {
-      uploadedFile = await cloudinary.uploader.upload(req.file.path, {
-        folder: "Pinvent App",
-        resource_type: "image",
-      });
-    } catch (error) {
-      res.status(500);
-      throw new Error("Image could not be uploaded");
-    }
+    // try {
+    //   uploadedFile = await cloudinary.uploader.upload(req.file.path, {
+    //     folder: "Pinvent App",
+    //     resource_type: "image",
+    //   });
+    // } catch (error) {
+    //   res.status(500);
+    //   throw new Error("Image could not be uploaded");
+    // }
 
     fileData = {
-      fileName: req.file.originalname,
-      filePath: uploadedFile.secure_url,
-      fileType: req.file.mimetype,
-      fileSize: fileSizeFormatter(req.file.size, 2),
+      fileName: req.body.file,
+      filePath: "http://localhost:5000/uploads/" + req.body.file,
+        fileType: req.file.mimetype,
+        fileSize: fileSizeFormatter(req.file.size, 2),
     };
   }
 
